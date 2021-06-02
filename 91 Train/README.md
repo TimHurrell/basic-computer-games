@@ -1,7 +1,3 @@
-### Train
+Original source downloaded [from Vintage Basic](http://www.vintage-basic.net/games.html)
 
-As published in Basic Computer Games (1978)
-https://www.atariarchives.org/basicgames/showpage.php?page=175
-
-Downloaded from Vintage Basic at
-http://www.vintage-basic.net/games.html
+Conversion to [Microsoft C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
