@@ -32,7 +32,7 @@ namespace TestProcess
         public void TestInitialConditiontrain()
         {
             train train = new train();
-            double test = train.traintime;
+            double test = train.Traintime;
             Assert.InRange(test, 20, 39);
         }
 
@@ -41,7 +41,7 @@ namespace TestProcess
         {
             train train = new train();
             train.hours = 6;
-            train.traintime = 25;
+            train.Traintime = 25;
             train.carMph = 50;
             double test = train.CorrectAnswerToSolution();
             Assert.Equal(6, test);
@@ -52,7 +52,7 @@ namespace TestProcess
         {
             train train = new train();
             train.hours = 6;
-            train.traintime = 25;
+            train.Traintime = 25;
             train.carMph = 50;
             double test = train.HowCloseToCorrectAnswerToSolution(9);
             Assert.Equal(33, test);
@@ -62,7 +62,7 @@ namespace TestProcess
         {
             train train = new train();
             train.hours = 6;
-            train.traintime = 25;
+            train.Traintime = 25;
             train.carMph = 50;
             Assert.False(train.SolutionWithinFivePercent(9));
         }
@@ -71,7 +71,7 @@ namespace TestProcess
         {
             train train = new train();
             train.hours = 6;
-            train.traintime = 25;
+            train.Traintime = 25;
             train.carMph = 50;
             Assert.True(train.SolutionWithinFivePercent(6));
         }

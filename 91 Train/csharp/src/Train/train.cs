@@ -5,11 +5,13 @@ namespace Train
    
     public class train
     {
-        public bool gameOver { get; set; }
         public double randomdouble { get; set; }
         public double carMph { get; set; }
         public double hours { get; set; }
-        public double traintime { get; set; }
+        public double Traintime { get; set; }
+        public bool IsCloseToCorrectAnswer { get; set; }
+        public int PercentageProximityToAnswer { get; set; }
+        public double CorrectAnswerToProblem { get; set; }
 
         //private sealed Scanner kbScanner;
 
@@ -21,7 +23,7 @@ namespace Train
             randomdouble = RandomGenerator();
             carMph = (int)(25 * randomdouble + 40);
             hours = (int)(15 * randomdouble + 5);
-            traintime = (int)(19 * randomdouble + 20);
+            Traintime = (int)(19 * randomdouble + 20);
         }
 
        
@@ -35,15 +37,7 @@ namespace Train
         }
 
 
-
-
-        private string DisplayTextAndGetInput(string text)
-        {
-            Console.WriteLine(text);
-            return Console.ReadLine();
-        }
-
-       
+               
         public bool YesEntered(string text)
         {
            
@@ -59,17 +53,17 @@ namespace Train
 
         public double HowCloseToCorrectAnswerToSolution(double howLong)
         {
-            return (int)(Math.Abs((CorrectAnswerToSolution() - howLong) * 100 / howLong) + .5);
+            return PercentageProximityToAnswer = (int)(Math.Abs((CorrectAnswerToSolution() - howLong) * 100 / howLong) + .5);
         }
 
         public double CorrectAnswerToSolution()
         {
-            return hours* traintime / (carMph - traintime);
+            return CorrectAnswerToProblem = hours * Traintime / (carMph - Traintime);
         }
 
         public bool SolutionWithinFivePercent(double howLong)
         {
-            return HowCloseToCorrectAnswerToSolution(howLong) < 5;
+            return IsCloseToCorrectAnswer = HowCloseToCorrectAnswerToSolution(howLong) < 5;
         }
 
 

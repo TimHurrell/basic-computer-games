@@ -17,7 +17,7 @@ namespace Console2
      */
     class mainconsole
     {
-       
+
 
         public void Process()
         {
@@ -30,27 +30,13 @@ namespace Console2
             do
             {
                 train train = new train();
-
-
-
                 InformationAboutJourney(train);
-
-                double howLong = Double.Parse(DisplayTextAndGetInput("HOW LONG DOES THE TRIP TAKE BY CAR? "));
-
+                double howLong = Double.Parse(GetInputAnswerToProblem());
                 train.SolutionWithinFivePercent(howLong);
+                DisplayHowCloseToCorrectAnswer(train);
+                DisplayAnotherProblem();
 
-                if (train.SolutionWithinFivePercent(howLong) is false)
-                {
-                    Console.WriteLine("SORRY.  YOU WERE OFF BY " + train.HowCloseToCorrectAnswerToSolution(howLong) + " PERCENT.");
-                }
-                else
-                {
-                    Console.WriteLine("GOOD! ANSWER WITHIN " + train.HowCloseToCorrectAnswerToSolution(howLong) + " PERCENT.");
-                }
-                Console.WriteLine("CORRECT ANSWER IS " + train.CorrectAnswerToSolution() + " HOURS.");
-
-                Console.WriteLine();
-                if (!train.YesEntered(DisplayTextAndGetInput("ANOTHER PROBLEM (YES OR NO)? ")))
+                if (!train.YesEntered(GetInputAnswerToWantAnotherGame()))
                 {
                     gameOver = true;
                 }
@@ -77,51 +63,62 @@ namespace Console2
         {
 
             Console.WriteLine(" A CAR TRAVELING " + (int)train.carMph + " MPH CAN MAKE A CERTAIN TRIP IN");
-            Console.WriteLine((int)train.hours + " HOURS LESS THAN A train TRAVELING AT " + (int)train.traintime + " MPH.");
+            Console.WriteLine((int)train.hours + " HOURS LESS THAN A TRAIN TRAVELLING AT " + (int)train.Traintime + " MPH.");
+            Console.WriteLine();
+            Console.WriteLine("HOW LONG DOES THE TRIP TAKE BY CAR? ");
+
+        }
+
+
+        private void DisplayAnotherProblem()
+        {
+            Console.WriteLine();
+            Console.WriteLine("ANOTHER PROBLEM (YES OR NO)? ");
 
         }
 
 
 
 
-
-        private string DisplayTextAndGetInput(string text)
+        private string GetInputAnswerToProblem()
         {
-            Console.WriteLine(text);
             return Console.ReadLine();
         }
 
-        /**
-         * Checks whether player entered Y or YES to a question.
-         *
-         * @param text player string from kb
-         * @return true of Y or YES was entered, otherwise false
-         */
 
-        /**
-         * Check whether a string equals one of a variable number of values
-         * Useful to check for Y or YES for example
-         * Comparison is case insensitive.
-         *
-         * @param text   source string
-         * @param values a range of values to compare against the source string
-         * @return true if a comparison was found in one of the variable number of strings passed
-         */
+        private void DisplayHowCloseToCorrectAnswer(train train)
+        {
 
 
-        /**
-         * Program startup.
-         *
-         * @param args not used (from command line).
-       
-    }
+            if (train.IsCloseToCorrectAnswer is false)
+            {
+                Console.WriteLine("SORRY.  YOU WERE OFF BY " + train.PercentageProximityToAnswer + " PERCENT.");
+            }
+            else
+            {
+                Console.WriteLine("GOOD! ANSWER WITHIN " + train.PercentageProximityToAnswer + " PERCENT.");
+            }
+            Console.WriteLine("CORRECT ANSWER IS " + train.CorrectAnswerToProblem + " HOURS.");
 
-      */
+        }
+
+
+        private string GetInputAnswerToWantAnotherGame()
+        {
+
+            return Console.ReadLine();
+        }
+
+
+    
         public static void Main(String[] args)
         {
-            Process process = new Process();
+            mainconsole mainconsole = new mainconsole();
+            mainconsole.Process();
+
         }
 
 
 
     }
+}
