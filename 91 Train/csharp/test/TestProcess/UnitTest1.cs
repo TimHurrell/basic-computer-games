@@ -64,7 +64,7 @@ namespace TestProcess
             train.hours = 6;
             train.Traintime = 25;
             train.carMph = 50;
-            Assert.False(train.SolutionWithinFivePercent(9));
+            Assert.False(train.SolutionWithinThreshold(9));
         }
         [Fact]
         public void TestSolutionWithinFivePercent()
@@ -73,7 +73,17 @@ namespace TestProcess
             train.hours = 6;
             train.Traintime = 25;
             train.carMph = 50;
-            Assert.True(train.SolutionWithinFivePercent(6));
+            Assert.True(train.SolutionWithinThreshold(6));
+        }
+        [Fact]
+        public void TestSolutionWithinFiftyPercent()
+        {
+            train train = new train();
+            train.hours = 6;
+            train.Traintime = 25;
+            train.carMph = 50;
+            train.Threshold = 50;
+            Assert.True(train.SolutionWithinThreshold(9));
         }
 
         [Fact]
@@ -102,12 +112,7 @@ namespace TestProcess
             Assert.False(train.YesEntered(myline));
         }
 
-        [Fact]
-        public void TestInitialConditionGameStatus()
-        {
-            train train = new train();
-            Assert.False(train.gameOver);
-        }
+       
 
     }
 }

@@ -17,8 +17,6 @@ namespace Console2
      */
     class mainconsole
     {
-
-
         public void Process()
         {
 
@@ -32,7 +30,7 @@ namespace Console2
                 train train = new train();
                 InformationAboutJourney(train);
                 double howLong = Double.Parse(GetInputAnswerToProblem());
-                train.SolutionWithinFivePercent(howLong);
+                train.SolutionWithinThreshold(howLong);
                 DisplayHowCloseToCorrectAnswer(train);
                 DisplayAnotherProblem();
 
@@ -45,10 +43,6 @@ namespace Console2
 
 
         }
-
-
-
-
 
         private void Intro()
         {
@@ -69,17 +63,12 @@ namespace Console2
 
         }
 
-
         private void DisplayAnotherProblem()
         {
             Console.WriteLine();
             Console.WriteLine("ANOTHER PROBLEM (YES OR NO)? ");
 
         }
-
-
-
-
         private string GetInputAnswerToProblem()
         {
             return Console.ReadLine();
@@ -90,7 +79,7 @@ namespace Console2
         {
 
 
-            if (train.IsCloseToCorrectAnswer is false)
+            if (!train.IsCloseToCorrectAnswer)
             {
                 Console.WriteLine("SORRY.  YOU WERE OFF BY " + train.PercentageProximityToAnswer + " PERCENT.");
             }
@@ -110,7 +99,7 @@ namespace Console2
         }
 
 
-    
+
         public static void Main(String[] args)
         {
             mainconsole mainconsole = new mainconsole();

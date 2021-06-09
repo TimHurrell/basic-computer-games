@@ -9,14 +9,11 @@ namespace Train
         public double carMph { get; set; }
         public double hours { get; set; }
         public double Traintime { get; set; }
+        public int Threshold { get; set; }
         public bool IsCloseToCorrectAnswer { get; set; }
         public int PercentageProximityToAnswer { get; set; }
         public double CorrectAnswerToProblem { get; set; }
 
-        //private sealed Scanner kbScanner;
-
-
-        //public Boolean gameOver;
 
         public train()
         {
@@ -24,6 +21,7 @@ namespace Train
             carMph = (int)(25 * randomdouble + 40);
             hours = (int)(15 * randomdouble + 5);
             Traintime = (int)(19 * randomdouble + 20);
+            Threshold = 5;
         }
 
        
@@ -43,9 +41,7 @@ namespace Train
            
 
 
-            if (text.Equals("Y", StringComparison.InvariantCultureIgnoreCase))
-            { return true; }
-            else if (text == "YES")
+            if (text.Equals("Y", StringComparison.InvariantCultureIgnoreCase) || text.Equals("YES", StringComparison.InvariantCultureIgnoreCase))
             { return true; }
             else
             { return false; }
@@ -61,9 +57,9 @@ namespace Train
             return CorrectAnswerToProblem = hours * Traintime / (carMph - Traintime);
         }
 
-        public bool SolutionWithinFivePercent(double howLong)
+        public bool SolutionWithinThreshold(double howLong)
         {
-            return IsCloseToCorrectAnswer = HowCloseToCorrectAnswerToSolution(howLong) < 5;
+            return IsCloseToCorrectAnswer = HowCloseToCorrectAnswerToSolution(howLong) < Threshold;
         }
 
 
